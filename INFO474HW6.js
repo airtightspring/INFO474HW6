@@ -35,7 +35,10 @@
        .attr( "d", geoPath );
    
     // Load in Point Data and Fill/Set OnClick
-   d3.csv("data.csv", function(data) {
+   d3.csv("data.csv")
+     .then((data) => doStuff(data, albersProjection, g));
+   
+   function doStuff(data, albersProjection, g) {
      g.selectAll('.circle')
             .data(data, albersProjection)
             .enter()
@@ -63,6 +66,6 @@
                    })});
                    
      
-   });
+                }
   
 })();
